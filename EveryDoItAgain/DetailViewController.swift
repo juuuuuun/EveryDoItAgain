@@ -12,13 +12,22 @@ class DetailViewController: UIViewController {
 
   @IBOutlet weak var detailDescriptionLabel: UILabel!
 
-
+  @IBOutlet weak var priorityNumberLabel: UILabel!
+  
+  @IBOutlet weak var toDoDescriptionTextView: UITextView!
+  
   func configureView() {
     // Update the user interface for the detail item.
     if let detail = detailItem {
-        if let label = detailDescriptionLabel {
-            label.text = detail.timestamp!.description
-        }
+      if let label = detailDescriptionLabel {
+        label.text = detail.title!.description
+      }
+      if let priorityLabel = priorityNumberLabel {
+        priorityLabel.text = detail.priorityNumber.description
+      }
+      if let toDoDescription = toDoDescriptionTextView {
+        toDoDescription.text = detail.todoDescription!.description
+      }
     }
   }
 
@@ -28,7 +37,7 @@ class DetailViewController: UIViewController {
     configureView()
   }
 
-  var detailItem: Event? {
+  var detailItem: ToDo? {
     didSet {
         // Update the view.
         configureView()

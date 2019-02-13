@@ -27,6 +27,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     controller.managedObjectContext = self.persistentContainer.viewContext
     return true
   }
+  
+  private func setUpDefaultValues() {
+    if UserDefaults.standard.bool(forKey: "default_values_for_todo_set") {
+      UserDefaults.standard.set("Default To-Do", forKey: "default_title_for_todo")
+      UserDefaults.standard.set("Default Description", forKey: "default_toDoDescription_for_todo")
+      UserDefaults.standard.set(0, forKey: "default_priorityNumber_for_todo")
+      UserDefaults.standard.set(true, forKey: "default_values_for_todo_set")
+    }
+  }
 
   func applicationWillResignActive(_ application: UIApplication) {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
