@@ -48,12 +48,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fQj-Kk-Sti">
-                                <rect key="frame" x="8" y="129.5" width="359" height="529.5"/>
+                                <rect key="frame" x="8" y="168.5" width="359" height="490.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hb1-a3-0aL">
+                                <rect key="frame" x="163" y="129.5" width="51" height="31"/>
+                                <connections>
+                                    <action selector="isCompletedSwitchPressed:" destination="JEX-9P-axG" eventType="valueChanged" id="YPT-7N-zz1"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -61,9 +67,11 @@
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="leading" secondItem="svH-Pt-448" secondAttribute="leading" constant="20" symbolic="YES" id="Tsc-yG-G1q"/>
                             <constraint firstItem="Zh5-g2-oea" firstAttribute="top" secondItem="0XM-y9-sOw" secondAttribute="bottom" constant="8" id="WZ8-Ji-doc"/>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="bottom" secondItem="fQj-Kk-Sti" secondAttribute="bottom" constant="8" id="bWM-Pq-B1D"/>
+                            <constraint firstItem="fQj-Kk-Sti" firstAttribute="top" secondItem="hb1-a3-0aL" secondAttribute="bottom" constant="8" id="c5K-OW-MPg"/>
                             <constraint firstItem="0XM-y9-sOw" firstAttribute="top" secondItem="VUw-jc-0yf" secondAttribute="top" constant="8" id="eSa-so-XUm"/>
-                            <constraint firstItem="fQj-Kk-Sti" firstAttribute="top" secondItem="Zh5-g2-oea" secondAttribute="bottom" constant="8" id="onn-Mh-wqh"/>
+                            <constraint firstItem="hb1-a3-0aL" firstAttribute="top" secondItem="Zh5-g2-oea" secondAttribute="bottom" constant="8" id="s3A-ub-COp"/>
                             <constraint firstAttribute="trailing" secondItem="0XM-y9-sOw" secondAttribute="trailing" constant="20" symbolic="YES" id="tHV-ZD-HQj"/>
+                            <constraint firstItem="hb1-a3-0aL" firstAttribute="centerX" secondItem="svH-Pt-448" secondAttribute="centerX" id="w5D-Du-3Q7"/>
                             <constraint firstItem="VUw-jc-0yf" firstAttribute="trailing" secondItem="fQj-Kk-Sti" secondAttribute="trailing" constant="8" id="xUD-tn-pwo"/>
                             <constraint firstItem="fQj-Kk-Sti" firstAttribute="leading" secondItem="VUw-jc-0yf" secondAttribute="leading" constant="8" id="z4R-SB-oP2"/>
                         </constraints>
@@ -73,13 +81,14 @@
                     <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
                     <connections>
                         <outlet property="detailDescriptionLabel" destination="0XM-y9-sOw" id="deQ-Na-JPF"/>
+                        <outlet property="isCompletedSwitch" destination="hb1-a3-0aL" id="86I-mF-VYq"/>
                         <outlet property="priorityNumberLabel" destination="Zh5-g2-oea" id="aO4-fV-75z"/>
                         <outlet property="toDoDescriptionTextView" destination="fQj-Kk-Sti" id="5M5-gG-p4c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FJe-Yq-33r" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="129"/>
+            <point key="canvasLocation" x="708" y="128.18590704647679"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">

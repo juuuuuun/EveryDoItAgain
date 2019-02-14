@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DetailViewControllerDelegate: AnyObject {
+  func saveChanges()
+}
+
 class DetailViewController: UIViewController {
 
   @IBOutlet weak var detailDescriptionLabel: UILabel!
@@ -16,17 +20,31 @@ class DetailViewController: UIViewController {
   
   @IBOutlet weak var toDoDescriptionTextView: UITextView!
   
+  @IBOutlet weak var isCompletedSwitch: UISwitch!
+  
+  weak var delegate: DetailViewControllerDelegate?
+  
+  @IBAction func isCompletedSwitchPressed(_ sender: UISwitch) {
+    if let toDo = detailItem {
+      toDo.isCompleted = sender.isOn
+      delegate?.saveChanges()
+    }
+  }
+  
   func configureView() {
     // Update the user interface for the detail item.
-    if let detail = detailItem {
+    if let toDo = detailItem {
       if let label = detailDescriptionLabel {
-        label.text = detail.title!.description
+        label.text = toDo.title!.description
       }
       if let priorityLabel = priorityNumberLabel {
-        priorityLabel.text = detail.priorityNumber.description
+        priorityLabel.text = toDo.priorityNumber.description
       }
       if let toDoDescription = toDoDescriptionTextView {
-        toDoDescription.text = detail.todoDescription!.description
+        toDoDescription.text = toDo.todoDescription!.description
+      }
+      if let isCompleted = isCompletedSwitch {
+        isCompleted.isOn = toDo.isCompleted
       }
     }
   }

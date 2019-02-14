@@ -9,12 +9,26 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, DetailViewControllerDelegate {
 
   var detailViewController: DetailViewController? = nil
   var managedObjectContext: NSManagedObjectContext? = nil
 
 
+  func saveChanges() {
+    let context = self.fetchedResultsController.managedObjectContext
+    
+    // Save the context.
+    do {
+      try context.save()
+    } catch {
+      // Replace this implementation with code to handle the error appropriately.
+      // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+      let nserror = error as NSError
+      fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -25,6 +39,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     if let split = splitViewController {
         let controllers = split.viewControllers
         detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+      
     }
   }
 
@@ -89,6 +104,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let object = fetchedResultsController.object(at: indexPath)
             let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
             controller.detailItem = object
+            controller.delegate = self
             controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
         }
@@ -137,6 +153,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
   func configureCell(_ cell: UITableViewCell, withToDo toDo: ToDo) {
     cell.textLabel!.text = toDo.title!.description
     cell.detailTextLabel!.text = "\(toDo.priorityNumber) " + toDo.todoDescription!.description
+    if toDo.isCompleted {
+      cell.accessoryType = .checkmark
+    } else {
+      cell.accessoryType = .none
+    }
   }
 
   // MARK: - Fetched results controller
